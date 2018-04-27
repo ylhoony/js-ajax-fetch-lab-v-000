@@ -40,7 +40,10 @@ function forkRepo() {
     headers: {
       Authorization : `token ${token}`
     }
-  }).then(res => res.json());
+  }).then(res => {
+    let repo = new Repo(resp);
+  showForkedRepo(repo);
+  });
 
 
 }
