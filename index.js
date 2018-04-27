@@ -42,7 +42,7 @@ function forkRepo() {
     }
   }).then(res => {
     let repo = new Repo(resp);
-  showForkedRepo(repo);
+    showForkedRepo(repo);
   });
 
 
