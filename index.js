@@ -44,8 +44,10 @@ function forkRepo() {
     let repo = new Repo(res);
     showForkedRepo(repo);
   });
+}
 
-
+function showForkedRepo(repo) {
+  $('#results').append(repo.template())
 }
 
 function getToken() {
