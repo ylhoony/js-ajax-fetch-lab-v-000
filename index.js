@@ -23,8 +23,18 @@ Repo.prototype.template = function(){
 };
 //
 
-
-
+function createIssue() {
+  const issueTitle = document.getElementById('title').value
+  const issueBody = document.getElementById('body').value
+  const postData = { title: issueTitle, body: issueBody }
+  fetch(`${baseApi}repos/${fork}/issues`, {
+    method: 'post',
+    headers: {
+      'Authorization': `token ${getToken()}`
+    },
+    body: JSON.stringify(postData)
+  }).then(resp => getIssues())
+}
 
 function getIssues(data) {
   fetch(`${baseApi}repos/${fork}/issues`).
@@ -39,19 +49,6 @@ function getIssues(data) {
 
 function displayIssue(issue) {
   $('#issues').append(issue.template())
-}
-
-function showIssues(json) {
-}
-
-function createIssue() {
-}
-
-function showResults(json) {
-  console.log(json);
-
-
-
 }
 
 function forkRepo() {
