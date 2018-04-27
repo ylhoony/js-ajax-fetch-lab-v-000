@@ -2,7 +2,19 @@ const userName = ''
 const baseApi = 'https://api.github.com/'
 const fork = `${userName}/javascript-fetch-lab`
 
-function getIssues() {
+function getIssues(data) {
+  fetch(`${baseApi}repos/${fork}/issues`).
+    then(resp => {
+      resp.json().then( data => {
+        for (let i = 0; i < data.length; i++){
+          displayIssue(new Issue(data[i]));
+        }
+      } )
+    })
+}
+
+function displayIssue(issue) {
+  $('#issues').append(issue.template())
 }
 
 function showIssues(json) {
